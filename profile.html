@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile - Solo Leveling</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="Workouts.html">Workouts</a>
+    <a href="Tracker.html">Tracker</a>
+    <a href="Calories.html">Calories</a>
+    <a href="login.html" id="loginNavLink">Login</a>
+    <a href="profile.html" id="profileNavLink" style="display: none;">Profile</a>
+  </nav>
+
+  <div class="form">
+    <p id="heading">Profile</p>
+    <p id="profileUsername">Username: </p>
+    <p id="profileAge">Age: </p>
+    <p id="profileSex">Sex: </p>
+    <p id="profileGoal">Goal: </p>
+
+    <div class="btn">
+      <button class="button1" id="logoutBtn" type="button">Logout</button>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    function getCurrentUser() {
+      try {
+        return JSON.parse(localStorage.getItem('sl_current_user'));
+      } catch (error) {
+        return null;
+      }
+    }
+
+    const currentUser = getCurrentUser();
+
+    if (!currentUser) {
+      window.location.href = 'login.html';
+    } else {
+      document.getElementById('profileUsername').textContent =
+        'Username: ' + (currentUser.username || '');
+      document.getElementById('profileAge').textContent =
+        'Age: ' + (currentUser.age || '');
+      document.getElementById('profileSex').textContent =
+        'Sex: ' + (currentUser.sex || '');
+      document.getElementById('profileGoal').textContent =
+        'Goal: ' + (currentUser.goal || '');
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('sl_current_user');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>
