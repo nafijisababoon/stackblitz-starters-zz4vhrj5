@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Other page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick+No+Bills:wght@742&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Workouts.html">Workouts</a>
+      <a href="Tracker.html" aria-current="page">Tracker</a>
+      <a href="Calories.html">Calories</a>
+      <a href="login.html">Login</a>
+    </nav>
+    <main class="page-wrap">
+      <section class="tracker-summary">
+        <div class="workout-card">
+          <h3>Weekly Calories</h3>
+          <p id="weeklyCaloriesTotal">0</p>
+        </div>
+        <div class="workout-card">
+          <h3>Workouts Completed</h3>
+          <p id="weeklyWorkoutsTotal">0</p>
+        </div>
+        <div class="workout-card">
+          <h3>Active Days</h3>
+          <p id="activeDaysTotal">0</p>
+        </div>
+      </section>
+
+      <section class="tracker-charts">
+        <div class="chart-box">
+          <canvas id="caloriesChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <canvas id="workoutsChart"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="track.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="/track.js"></script>
+  </body>
+</html>

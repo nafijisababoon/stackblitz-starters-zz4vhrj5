@@ -1,0 +1,173 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #0d0517;
+  color: #eae6ff;
+  font-family: 'Inter', sans-serif;
+  min-height: 100%;
+}
+/* ===== TOP NAVBAR (Lovable style) ===== */
+
+nav {
+  font-family: 'Stick No Bills', sans-serif;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  background-color: #280241;
+}
+
+nav a {
+  display: inline-block;
+  min-width: 9rem;
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+  border: solid 1px #9421e2;
+  text-align: center;
+  text-decoration: none;
+  color: #9421e2;
+}
+
+nav a[aria-current='page'] {
+  color: var(--text);
+  background-color: #9421e2;
+}
+.form {
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 1.8em 2.4em 0.48em;
+  background-color: #1b0e2c;
+  border: 1px solid #6a00ff;
+  border-radius: 30px;
+  transition: box-shadow 0.4s ease-in-out;
+  max-width: 480px;
+  margin: 55px auto 0;
+}
+@keyframes glowOnce {
+  0% {
+    box-shadow: 0 0 0px #6a00ff;
+  }
+  28% {
+    box-shadow: 0 0 12px #710efc, 0 0 24px #710efc;
+  }
+  100% {
+    box-shadow: 0 0 0px #6a00ff;
+  }
+}
+
+.form:hover {
+  animation: glowOnce 1.2s ease-in-out;
+}
+
+#heading {
+  text-align: center;
+  margin: 2.4em;
+  color: rgb(255, 255, 255);
+  font-size: 1.44em;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  border-radius: 30px;
+  padding: 0.72em;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: #190c2b;
+  box-shadow: inset 2.4px 6px 12px rgb(13, 0, 24);
+  animation: popFade 0.35s ease-out forwards;
+}
+
+.input-icon {
+  height: 1.56em;
+  width: 1.56em;
+  fill: white;
+}
+
+.login-field {
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: #d3d3d3;
+  font-size: 1.2em;
+  animation: popFade 0.35s ease-out forwards;
+}
+
+.form .btn {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 3em;
+  animation: popFade 0.35s ease-out forwards;
+}
+
+.button1,
+.button2,
+.button3 {
+  padding: 0.6em 1.32em;
+  border-radius: 6px;
+  font-size: 1.08em;
+  border: none;
+  outline: none;
+  transition: 0.4s ease-in-out;
+  background-color: #281e38;
+  color: white;
+  animation: popFade 0.35s ease-out forwards;
+}
+
+.button1 {
+  font-family: 'Stick No Bills', sans-serif;
+  margin-right: 0.6em;
+}
+
+.button2 {
+  font-family: 'Stick No Bills', sans-serif;
+  padding-left: 2.76em;
+  padding-right: 2.76em;
+}
+
+.button3 {
+  font-family: 'Stick No Bills', sans-serif;
+  margin-bottom: 3.6em;
+}
+
+.button1:hover,
+.button2:hover {
+  background-color: #120027;
+}
+
+.button3:hover {
+  background-color: rgb(195, 0, 255);
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popFade {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

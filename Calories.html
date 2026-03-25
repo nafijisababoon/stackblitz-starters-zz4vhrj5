@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick+No+Bills:wght@742&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Calories</title>
+  </head>
+
+  <body>
+    <nav class="top-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="Workouts.html" class="nav-link">Workouts</a>
+      <a href="Tracker.html" class="nav-link">Tracker</a>
+      <a href="Calories.html" class="nav-link active">Calories</a>
+      <a href="login.html" class="nav-link">Login</a>
+    </nav>
+
+    <main>
+      <h2 class="app-heading">YOUR CALORIE GOAL</h2>
+
+      <div class="goal-card">
+        <div class="goal-big" id="goal-big">0 / 0 kcal</div>
+        <div class="goal-bar">
+          <div class="goal-bar-fill" id="goal-bar-fill"></div>
+        </div>
+        <div class="goal-small" id="goal-small">0% of daily goal</div>
+      </div>
+
+      <h2 class="app-heading">YOUR MACRONUTRIENTS TODAY</h2>
+
+      <div class="macros-row">
+        <!-- PROTEIN -->
+        <div class="macro-card" data-macro="protein">
+          <div class="ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle
+                class="macro-fill protein"
+                cx="60"
+                cy="60"
+                r="50"
+              ></circle>
+            </svg>
+            <span class="macro-percent">0%</span>
+          </div>
+
+          <div class="macro-name">PROTEIN</div>
+          <div class="macro-grams">
+            <span class="macro-current">0</span>g /
+            <span class="macro-goal">150</span>g
+          </div>
+        </div>
+
+        <!-- CARBS -->
+        <div class="macro-card" data-macro="carbs">
+          <div class="ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="macro-fill carbs" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <span class="macro-percent">0%</span>
+          </div>
+
+          <div class="macro-name">CARBS</div>
+          <div class="macro-grams">
+            <span class="macro-current">0</span>g /
+            <span class="macro-goal">250</span>g
+          </div>
+        </div>
+
+        <!-- FAT -->
+        <div class="macro-card" data-macro="fat">
+          <div class="ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="macro-fill fat" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <span class="macro-percent">0%</span>
+          </div>
+
+          <div class="macro-name">FAT</div>
+          <div class="macro-grams">
+            <span class="macro-current">0</span>g /
+            <span class="macro-goal">65</span>g
+          </div>
+        </div>
+
+        <!-- SUGAR -->
+        <div class="macro-card" data-macro="sugar">
+          <div class="ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="ring-bg" cx="60" cy="60" r="50"></circle>
+              <circle class="macro-fill sugar" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <span class="macro-percent">0%</span>
+          </div>
+
+          <div class="macro-name">SUGAR</div>
+          <div class="macro-grams">
+            <span class="macro-current">0</span>g /
+            <span class="macro-goal">50</span>g
+          </div>
+        </div>
+      </div>
+
+      <!-- ONE macro goals card only -->
+      <div class="macro-goals-card" id="macro-card">
+        <!-- VIEW MODE -->
+        <div class="macro-view" id="macro-view">
+          <div class="macro-goals-text" id="goals-text">
+            Goals: 150g Protein · 250g Carbs · 65g Fat · 50g Sugar
+          </div>
+
+          <button class="primary-btn" id="edit-goals">Edit Macro Goals</button>
+        </div>
+
+        <!-- EDIT MODE -->
+        <div class="macro-edit hidden" id="macro-panel">
+          <h3 class="panel-title">SET MACRO GOALS</h3>
+
+          <div class="grid-3">
+            <input
+              id="macro-protein"
+              class="input-field"
+              placeholder="Protein (g)"
+            />
+            <input
+              id="macro-carbs"
+              class="input-field"
+              placeholder="Carbs (g)"
+            />
+            <input id="macro-fat" class="input-field" placeholder="Fat (g)" />
+          </div>
+
+          <div class="grid-2">
+            <button class="primary-btn" id="save-macros">Save</button>
+            <button class="secondary-btn" id="cancel-macros">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="macro.js"></script>
+  </body>
+</html>

@@ -1,0 +1,239 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick+No+Bills:wght@742&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="Workouts.html">Workouts</a>
+      <a href="Tracker.html">Tracker</a>
+      <a href="Calories.html">Calories</a>
+      <a href="login.html">Login</a>
+    </nav>
+
+    <main>
+      <div class="app-title">Solo Leveling</div>
+      <p class="app-mini">Track your calories with style.</p>
+
+      <h2 class="app-heading">YOUR DAILY NET CALORIES IS</h2>
+      <h3 class="calorie" id="net-calories">0</h3>
+      <p class="goal-line" id="goal-line">Goal: — kcal · 0% reached</p>
+
+      <button class="wide-btn" id="toggle-goal">Set Your Calorie Goal</button>
+
+      <section class="panel hidden" id="goal-panel">
+        <h3 class="panel-title">SET YOUR GOAL</h3>
+
+        <div class="grid-2">
+          <div>
+            <label for="height-unit">Height Unit</label>
+            <select id="height-unit" class="input-field">
+              <option value="cm" selected>Centimetres</option>
+              <option value="m">Metres</option>
+              <option value="ftin">Feet & Inches</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="weight-unit">Weight Unit</label>
+            <select id="weight-unit" class="input-field">
+              <option value="kg" selected>Kilograms</option>
+              <option value="lb">Pounds</option>
+            </select>
+          </div>
+
+          <div>
+            <label id="height-label" for="height-input">Height (cm)</label>
+            <input
+              id="height-input"
+              type="number"
+              class="input-field"
+              placeholder="e.g. 178"
+            />
+          </div>
+
+          <div>
+            <label id="weight-label" for="weight-input">Weight (kg)</label>
+            <input
+              id="weight-input"
+              type="number"
+              class="input-field"
+              placeholder="e.g. 68"
+            />
+          </div>
+
+          <div>
+            <label for="age-input">Age</label>
+            <input
+              id="age-input"
+              type="number"
+              class="input-field"
+              placeholder="e.g. 17"
+            />
+          </div>
+
+          <div>
+            <label for="goal-weight-input">Goal Weight (kg)</label>
+            <input
+              id="goal-weight-input"
+              type="number"
+              class="input-field"
+              placeholder="optional"
+            />
+          </div>
+
+          <div>
+            <label for="sex-input">Sex</label>
+            <select id="sex-input" class="input-field">
+              <option value="male" selected>Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="activity-input">Activity Level</label>
+            <select id="activity-input" class="input-field">
+              <option value="sedentary">Sedentary</option>
+              <option value="light">Light</option>
+              <option value="moderate" selected>Moderate</option>
+              <option value="active">Active</option>
+              <option value="very">Very Active</option>
+            </select>
+          </div>
+        </div>
+        <div class="scaled-mode-wrapper">
+          <label class="checkbox-label">
+            <input type="checkbox" id="scaled-goal-checkbox" />
+            Enable scaled goal mode
+          </label>
+
+          <div class="scaled-info">
+            Scaled mode adjusts calories based on how far your goal weight is
+            from your current weight. Bigger changes = bigger surplus/deficit.
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <button class="primary-btn" id="calc-goal-btn">Calculate Goal</button>
+          <button class="secondary-btn" id="cancel-goals">Cancel</button>
+        </div>
+      </section>
+      <!-- ===== FOOD SEARCH ===== -->
+      <form id="food-form" class="search-row">
+        <input
+          type="text"
+          id="food-input"
+          class="input-field"
+          placeholder="e.g. chicken biryani"
+          required
+        />
+        <button type="submit" class="primary-btn">Check Nutrition</button>
+      </form>
+
+      <!-- ===== CUSTOM CALORIES TOGGLE ===== -->
+      <button class="wide-btn" id="toggle-custom">
+        ＋ Add Custom Calories
+      </button>
+
+      <!-- ===== CUSTOM ENTRY PANEL ===== -->
+      <section class="panel hidden" id="custom-panel">
+        <h3 class="panel-title">CUSTOM ENTRY</h3>
+
+        <div class="custom-grid">
+          <div class="custom-field full">
+            <label for="custom-name">Food name</label>
+            <input
+              id="custom-name"
+              class="input-field"
+              placeholder="Food name"
+            />
+          </div>
+
+          <div class="custom-field">
+            <label for="custom-cal">Calories (kcal) *</label>
+            <input
+              id="custom-cal"
+              type="number"
+              class="input-field"
+              placeholder="e.g. 250"
+            />
+          </div>
+
+          <div class="custom-field">
+            <label for="custom-protein">Protein (g)</label>
+            <input
+              id="custom-protein"
+              type="number"
+              class="input-field"
+              value="0"
+            />
+          </div>
+
+          <div class="custom-field">
+            <label for="custom-carbs">Carbs (g)</label>
+            <input
+              id="custom-carbs"
+              type="number"
+              class="input-field"
+              value="0"
+            />
+          </div>
+
+          <div class="custom-field">
+            <label for="custom-fat">Fat (g)</label>
+            <input
+              id="custom-fat"
+              type="number"
+              class="input-field"
+              value="0"
+            />
+          </div>
+
+          <div class="custom-field">
+            <label for="custom-sugar">Sugar (g)</label>
+            <input
+              id="custom-sugar"
+              type="number"
+              class="input-field"
+              value="0"
+            />
+          </div>
+        </div>
+
+        <button class="wide-btn" id="add-custom">Add to Log</button>
+      </section>
+
+      <div id="results"></div>
+
+      <section class="panel log-panel">
+        <div class="log-header">
+          <h3 class="panel-title">TODAY'S FOOD LOG</h3>
+          <button id="clear-log" class="clear-btn">Clear All</button>
+        </div>
+
+        <div id="log-list" class="log-list"></div>
+
+        <div class="log-total">
+          TOTAL: <span id="log-total-cal">0</span> kcal
+        </div>
+      </section>
+    </main>
+  </body>
+  <script src="script.js"></script>
+</html>
