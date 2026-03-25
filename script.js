@@ -292,7 +292,42 @@ function renderLog() {
 
   if (totalEl) totalEl.textContent = String(Math.round(total));
 }
+function logTrackerCalories(caloriesToAdd) {
+  const today = todayKey();
 
+  let trackerData;
+  try {
+    trackerData = JSON.parse(localStorage.getItem('sl_tracker_data')) || {};
+  } catch {
+    trackerData = {};
+  }
+
+  if (!trackerData[today]) {
+    trackerData[today] = { calories: 0, workouts: 0 };
+  }
+
+  trackerData[today].calories += Math.max(0, clampNum(caloriesToAdd));
+
+  localStorage.setItem('sl_tracker_data', JSON.stringify(trackerData));
+}
+function setTrackerCaloriesForToday(calorieValue) {
+  const today = todayKey();
+
+  let trackerData;
+  try {
+    trackerData = JSON.parse(localStorage.getItem('sl_tracker_data')) || {};
+  } catch {
+    trackerData = {};
+  }
+
+  if (!trackerData[today]) {
+    trackerData[today] = { calories: 0, workouts: 0 };
+  }
+
+  trackerData[today].calories = Math.max(0, clampNum(calorieValue));
+
+  localStorage.setItem('sl_tracker_data', JSON.stringify(trackerData));
+}
 function addEntry(entry) {
   const today = loadToday();
   const log = loadLog();
@@ -319,9 +354,11 @@ function addEntry(entry) {
   saveToday(today);
   saveLog(log);
 
+  // NEW: also update tracker data for today
+  logTrackerCalories(e.calories);
+
   updateAllUI();
 }
-
 function removeEntry(index) {
   const log = loadLog();
   const today = loadToday();
@@ -340,7 +377,7 @@ function removeEntry(index) {
   log.splice(index, 1);
   saveToday(today);
   saveLog(log);
-
+  setTrackerCaloriesForToday(today.calories);
   updateAllUI();
 }
 
@@ -356,7 +393,7 @@ function clearLog() {
     fat: 0,
     sugar: 0,
   });
-
+  setTrackerCaloriesForToday(0);
   updateAllUI();
 }
 

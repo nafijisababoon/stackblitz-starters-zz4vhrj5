@@ -171,3 +171,23 @@ nav a[aria-current='page'] {
     transform: scale(1) translateY(0);
   }
 }
+.profile-info {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #f2ecff;
+  margin: 0.5rem 0 1rem;
+}
+
+.profile-info p {
+  margin: 0 0 1rem 0;
+}
+
+.profile-info strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.profile-card .button1 {
+  align-self: center;
+}

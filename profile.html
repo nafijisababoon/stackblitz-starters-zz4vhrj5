@@ -1,63 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile - Solo Leveling</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="login.css" />
-</head>
-<body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="Workouts.html">Workouts</a>
-    <a href="Tracker.html">Tracker</a>
-    <a href="Calories.html">Calories</a>
-    <a href="login.html" id="loginNavLink">Login</a>
-    <a href="profile.html" id="profileNavLink" style="display: none;">Profile</a>
-  </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Solo Leveling</title>
 
-  <div class="form">
-    <p id="heading">Profile</p>
-    <p id="profileUsername">Username: </p>
-    <p id="profileAge">Age: </p>
-    <p id="profileSex">Sex: </p>
-    <p id="profileGoal">Goal: </p>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Inter:wght@400;500;600&family=Rubik:ital,wght@0,300..900;1,300..900&family=Stick+No+Bills:wght@742&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Workouts.html">Workouts</a>
+      <a href="Tracker.html">Tracker</a>
+      <a href="Calories.html">Calories</a>
+      <a href="login.html" id="loginNavLink">Login</a>
+      <a href="profile.html" id="profileNavLink" aria-current="page" style="display: none;">Profile</a>
+    </nav>
 
-    <div class="btn">
-      <button class="button1" id="logoutBtn" type="button">Logout</button>
+    <div class="form profile-card">
+      <p id="heading">Profile</p>
+
+      <div class="profile-info">
+        <p id="profileUsername"><strong>Username:</strong> </p>
+        <p id="profileAge"><strong>Age:</strong> </p>
+        <p id="profileSex"><strong>Sex:</strong> </p>
+        <p id="profileGoal"><strong>Goal:</strong> </p>
+      </div>
+
+      <div class="btn">
+        <button class="button1" id="logoutBtn" type="button">Logout</button>
+      </div>
     </div>
-  </div>
 
-  <script src="nav.js"></script>
-  <script>
-    function getCurrentUser() {
-      try {
-        return JSON.parse(localStorage.getItem('sl_current_user'));
-      } catch (error) {
-        return null;
+    <script src="nav.js"></script>
+    <script>
+      function getCurrentUser() {
+        try {
+          return JSON.parse(localStorage.getItem('sl_current_user'));
+        } catch {
+          return null;
+        }
       }
-    }
 
-    const currentUser = getCurrentUser();
+      const currentUser = getCurrentUser();
 
-    if (!currentUser) {
-      window.location.href = 'login.html';
-    } else {
-      document.getElementById('profileUsername').textContent =
-        'Username: ' + (currentUser.username || '');
-      document.getElementById('profileAge').textContent =
-        'Age: ' + (currentUser.age || '');
-      document.getElementById('profileSex').textContent =
-        'Sex: ' + (currentUser.sex || '');
-      document.getElementById('profileGoal').textContent =
-        'Goal: ' + (currentUser.goal || '');
-    }
+      if (!currentUser) {
+        window.location.href = 'login.html';
+      } else {
+        document.getElementById('profileUsername').innerHTML =
+          '<strong>Username:</strong> ' + (currentUser.username || '');
+        document.getElementById('profileAge').innerHTML =
+          '<strong>Age:</strong> ' + (currentUser.age || '');
+        document.getElementById('profileSex').innerHTML =
+          '<strong>Sex:</strong> ' + (currentUser.sex || '');
+        document.getElementById('profileGoal').innerHTML =
+          '<strong>Goal:</strong> ' + (currentUser.goal || '');
+      }
 
-    document.getElementById('logoutBtn').addEventListener('click', () => {
-      localStorage.removeItem('sl_current_user');
-      window.location.href = 'login.html';
-    });
-  </script>
-</body>
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        localStorage.removeItem('sl_current_user');
+        window.location.href = 'login.html';
+      });
+    </script>
+  </body>
 </html>

@@ -14,8 +14,16 @@ function showMessage(message, isError = true) {
 function getUsers() {
   try {
     return JSON.parse(localStorage.getItem('sl_users')) || [];
-  } catch (error) {
+  } catch {
     return [];
+  }
+}
+
+function getCurrentUser() {
+  try {
+    return JSON.parse(localStorage.getItem('sl_current_user')) || null;
+  } catch {
+    return null;
   }
 }
 
@@ -27,24 +35,33 @@ function saveCurrentUser(user) {
       age: user.age ?? null,
       sex: user.sex ?? null,
       goal: user.goal ?? null,
+      createdAt: user.createdAt ?? null,
       loggedInAt: new Date().toISOString(),
     })
   );
 }
 
 function findUser(username) {
-  const users = getUsers();
-  return users.find(
-    (user) => user.username.toLowerCase() === username.toLowerCase()
+  const normalized = username.trim().toLowerCase();
+  return getUsers().find(
+    (user) => String(user.username).trim().toLowerCase() === normalized
   );
 }
+
+// If already logged in, don't let user stay on login page
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = getCurrentUser();
+  if (currentUser?.username) {
+    window.location.href = 'profile.html';
+  }
+});
 
 if (loginForm) {
   loginForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const username = usernameInput.value.trim();
-    const password = passwordInput.value;
+    const password = passwordInput.value.trim();
 
     if (!username || !password) {
       showMessage('Please enter both username and password.');
@@ -58,7 +75,7 @@ if (loginForm) {
       return;
     }
 
-    if (user.password !== password) {
+    if (String(user.password) !== password) {
       showMessage('Incorrect password.');
       return;
     }
@@ -67,8 +84,8 @@ if (loginForm) {
     showMessage('Login successful. Redirecting...', false);
 
     setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 800);
+      window.location.href = 'profile.html';
+    }, 700);
   });
 }
 
