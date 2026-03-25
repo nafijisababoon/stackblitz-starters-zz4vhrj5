@@ -18,7 +18,7 @@ function showMessage(message, isError = true) {
 function getUsers() {
   try {
     return JSON.parse(localStorage.getItem('sl_users')) || [];
-  } catch (error) {
+  } catch {
     return [];
   }
 }
@@ -27,19 +27,58 @@ function saveUsers(users) {
   localStorage.setItem('sl_users', JSON.stringify(users));
 }
 
-function usernameExists(username) {
-  return getUsers().some(
-    (user) => user.username.toLowerCase() === username.toLowerCase()
+function getCurrentUser() {
+  try {
+    return JSON.parse(localStorage.getItem('sl_current_user')) || null;
+  } catch {
+    return null;
+  }
+}
+
+function saveCurrentUser(user) {
+  localStorage.setItem(
+    'sl_current_user',
+    JSON.stringify({
+      username: user.username,
+      age: user.age ?? null,
+      sex: user.sex ?? null,
+      goal: user.goal ?? null,
+      createdAt: user.createdAt ?? null,
+      loggedInAt: new Date().toISOString(),
+    })
   );
 }
+
+function usernameExists(username) {
+  const normalized = username.trim().toLowerCase();
+  return getUsers().some(
+    (user) => String(user.username).trim().toLowerCase() === normalized
+  );
+}
+
+function isStrongPassword(password) {
+  return (
+    password.length >= 8 &&
+    /[A-Za-z]/.test(password) &&
+    /\d/.test(password)
+  );
+}
+
+// If already logged in, don't let user stay on signup page
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUser = getCurrentUser();
+  if (currentUser?.username) {
+    window.location.href = 'profile.html';
+  }
+});
 
 if (signupForm) {
   signupForm.addEventListener('submit', (event) => {
     event.preventDefault();
 
     const username = usernameInput.value.trim();
-    const password = passwordInput.value;
-    const confirmPassword = confirmPasswordInput.value;
+    const password = passwordInput.value.trim();
+    const confirmPassword = confirmPasswordInput.value.trim();
     const age = Number(ageInput.value);
     const sex = sexInput.value;
     const goal = goalInput.value;
@@ -54,13 +93,18 @@ if (signupForm) {
       return;
     }
 
+    if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+      showMessage('Username can only contain letters, numbers, and underscores.');
+      return;
+    }
+
     if (usernameExists(username)) {
       showMessage('That username already exists.');
       return;
     }
 
-    if (password.length < 8) {
-      showMessage('Password must be at least 8 characters.');
+    if (!isStrongPassword(password)) {
+      showMessage('Password must be at least 8 characters and include letters and numbers.');
       return;
     }
 
@@ -87,12 +131,13 @@ if (signupForm) {
 
     users.push(newUser);
     saveUsers(users);
+    saveCurrentUser(newUser);
 
-    showMessage('Account created successfully. Redirecting to login...', false);
+    showMessage('Account created successfully. Redirecting...', false);
 
     setTimeout(() => {
-      window.location.href = 'login.html';
-    }, 1000);
+      window.location.href = 'profile.html';
+    }, 700);
   });
 }
 
