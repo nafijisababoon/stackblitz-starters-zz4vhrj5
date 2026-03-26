@@ -238,12 +238,7 @@ function seedDummyTrackerDataIfEmpty() {
   const last7Dates = getLast7Dates();
   const starterData = {};
 
-  last7Dates.forEach((date, index) => {
-    starterData[date] = {
-      calories: [2900, 3150, 2400, 1500, 2212, 3322, 3000][index],
-      workouts: [1, 1, 0, 0, 1, 1, 1][index],
-    };
-  });
+
 
   saveTrackerData(starterData);
 }
